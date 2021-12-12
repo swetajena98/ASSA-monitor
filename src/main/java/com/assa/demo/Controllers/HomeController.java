@@ -4,6 +4,7 @@
  */
 package com.assa.demo.Controllers;
 
+import com.assa.demo.TodoType;
 import com.assa.demo.entities.Todo;
 import com.assa.demo.mySqlRecords.TodoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 
-public class TodoType{
-    private String title;
-}
+
 
 @Controller
 @RequestMapping(path = "/demo")
@@ -37,13 +36,13 @@ public class HomeController {
 
     @PostMapping(path = "/add") // Map ONLY POST Requests
     public @ResponseBody
-    String addNewTodo(@RequestBody TodoType todo) {
+    Todo addNewTodo(@RequestBody TodoType todo) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         Todo newTd = new Todo();
-        newTd.setTtitle(todo.title);
+        newTd.setTitle(todo.title);
         TodoRepository.save(newTd);
-        return newTd;
+    return newTd;
     }
 
 }
