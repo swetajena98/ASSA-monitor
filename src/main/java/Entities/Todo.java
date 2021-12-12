@@ -24,7 +24,7 @@ public class Todo {
   public Integer getId() {
     return id;
   }
- public Integer getTitle() {
+ public String getTitle() {
     return title;
   }
 
@@ -32,7 +32,7 @@ public class Todo {
     this.id = id;
   }
 
-  public String getStatus() {
+  public Integer getStatus() {
     return status;
   }
 
