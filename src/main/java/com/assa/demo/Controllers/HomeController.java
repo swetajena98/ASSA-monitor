@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestBody;
+
+public class TodoType{
+    private String title;
+}
 
 @Controller
 @RequestMapping(path = "/demo")
@@ -32,10 +37,13 @@ public class HomeController {
 
     @PostMapping(path = "/add") // Map ONLY POST Requests
     public @ResponseBody
-    String addNewTodo(@RequestParam String title) {
+    String addNewTodo(@RequestBody TodoType todo) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        return title+"";
+        Todo newTd = new Todo();
+        newTd.setTtitle(todo.title);
+        TodoRepository.save(newTd);
+        return newTd;
     }
 
 }
