@@ -10,14 +10,12 @@ import com.assa.demo.mySqlRecords.TodoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
-
-
 
 @Controller
 @RequestMapping(path = "/demo")
@@ -34,7 +32,7 @@ public class HomeController {
         return TodoRepository.findAll();
     }
 
-    @PostMapping(path = "/add") // Map ONLY POST Requests
+    @PostMapping(path = "/todo") // Map ONLY POST Requests
     public @ResponseBody
     Todo addNewTodo(@RequestBody TodoType todo) {
         // @ResponseBody means the returned String is the response, not a view name
@@ -42,7 +40,13 @@ public class HomeController {
         Todo newTd = new Todo();
         newTd.setTitle(todo.title);
         TodoRepository.save(newTd);
-    return newTd;
+        return newTd;
+    }
+    @PutMapping(path = '/todo')
+    public @ResponseBody
+    Todo updateTodo(@RequestBody TodoType todo){
+        Todo ttu = TodoRepository.findById(todo.id);
+        return ttu;
     }
 
 }
