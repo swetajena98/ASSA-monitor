@@ -40,6 +40,7 @@ public class HomeController {
         // @RequestParam means it is a parameter from the GET or POST request
         Todo newTd = new Todo();
         newTd.setTitle(todo.title);
+        newTd.setStatus(0);
         TodoRepository.save(newTd);
         return newTd;
     }
@@ -48,6 +49,7 @@ public class HomeController {
     public @ResponseBody
     Optional<Todo> updateTodo(@RequestBody TodoType todo) {
         Optional<Todo> ttu = TodoRepository.findById(todo.id);
+        TodoRepository.save(ttu);
         return ttu;
     }
 
