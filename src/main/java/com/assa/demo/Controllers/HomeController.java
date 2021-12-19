@@ -7,6 +7,7 @@ package com.assa.demo.Controllers;
 import com.assa.demo.TodoType;
 import com.assa.demo.entities.Todo;
 import com.assa.demo.mySqlRecords.TodoRepository;
+import java.util.Optional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,10 +43,11 @@ public class HomeController {
         TodoRepository.save(newTd);
         return newTd;
     }
-    @PutMapping(path = '/todo')
+
+    @PutMapping(path = "/todo")
     public @ResponseBody
-    Todo updateTodo(@RequestBody TodoType todo){
-        Todo ttu = TodoRepository.findById(todo.id);
+    Optional<Todo> updateTodo(@RequestBody TodoType todo) {
+        Optional<Todo> ttu = TodoRepository.findById(todo.id);
         return ttu;
     }
 

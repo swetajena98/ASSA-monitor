@@ -8,8 +8,9 @@ package com.assa.demo;
  *
  * @author Sciffer Laptop 10
  */
-public class TodoType{
-    private Integer id;
-    private String title;
-    private Integer status;
+public class TodoType {
+
+    public Integer id;
+    public String title;
+    public Integer status;
 }
